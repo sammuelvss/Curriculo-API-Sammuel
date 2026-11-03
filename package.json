@@ -1,0 +1,37 @@
+{
+  "name": "curriculo-api-sammuel",
+  "version": "1.0.0",
+  "description": "API REST de Currículo - Aplicações Orientadas a Serviços (2026.2) [UNICAP]",
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "nodemon --exec babel-node src/index.js",
+    "build": "babel src -d dist",
+    "start": "node dist/index.js",
+    "seed": "babel-node src/seed.js"
+  },
+  "keywords": [
+    "express",
+    "UNICAP",
+    "dotenv",
+    "back-end",
+    "curriculo",
+    "portfolio"
+  ],
+  "author": "Sammuel Victor Santana de Souza",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "pg": "^8.13.3",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.37.5"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.26.4",
+    "@babel/core": "^7.26.9",
+    "@babel/node": "^7.26.0",
+    "@babel/preset-env": "^7.26.9",
+    "nodemon": "^3.1.9"
+  }
+}

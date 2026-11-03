@@ -1,0 +1,537 @@
+{
+  "info": {
+    "name": "Currículo Express API - Sammuel Victor",
+    "description": "Coleção completa de endpoints da API REST de Currículo (Sammuel Victor Santana de Souza) — CRUD de Perfis, Experiências Acadêmicas, Experiências Profissionais e Projetos.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://curriculo-api-sammuel.vercel.app",
+      "type": "string"
+    },
+    {
+      "key": "profileId1",
+      "value": "a1b2c3d4-e5f6-4a7b-8c9d-0e1f2a3b4c5d",
+      "type": "string"
+    },
+    {
+      "key": "profileId2",
+      "value": "e1f2a3b4-c5d6-4e7f-8a9b-0c1d2e3f4a5b",
+      "type": "string"
+    },
+    {
+      "key": "academicExperienceId",
+      "value": "b1c2d3e4-f5a6-4b7c-8d9e-0f1a2b3c4d5e",
+      "type": "string"
+    },
+    {
+      "key": "professionalExperienceId",
+      "value": "c1d2e3f4-a5b6-4c7d-8e9f-0a1b2c3d4e5f",
+      "type": "string"
+    },
+    {
+      "key": "projectId",
+      "value": "d1e2f3a4-b5c6-4d7e-8f9a-0b1c2d3e4f5a",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Root",
+      "item": [
+        {
+          "name": "Health Check",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/",
+              "host": ["{{baseUrl}}"],
+              "path": [""]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Profiles",
+      "item": [
+        {
+          "name": "Listar Todos os Perfis",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const res = pm.response.json();",
+                  "if (res.length >= 2) {",
+                  "  pm.collectionVariables.set('profileId1', res[0].id);",
+                  "  pm.collectionVariables.set('profileId2', res[1].id);",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/profiles",
+              "host": ["{{baseUrl}}"],
+              "path": ["profiles"]
+            }
+          }
+        },
+        {
+          "name": "Buscar Perfil por ID (Sammuel Victor - Pessoa 1)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/profiles/{{profileId1}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["profiles", "{{profileId1}}"]
+            }
+          }
+        },
+        {
+          "name": "Buscar Perfil por ID (Beatriz Cavalcanti - Pessoa 2)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/profiles/{{profileId2}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["profiles", "{{profileId2}}"]
+            }
+          }
+        },
+        {
+          "name": "Criar Novo Perfil",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"Carlos Eduardo Lima\",\n  \"cargo\": \"Desenvolvedor Full Stack\",\n  \"resumo\": \"Desenvolvedor com experiência em Java/Spring Boot, React, Node.js e PostgreSQL.\",\n  \"email\": \"carlos.lima@email.com\",\n  \"telefone\": \"(81) 99111-2233\",\n  \"linkedin\": \"https://www.linkedin.com/in/carloseduardolima\",\n  \"github\": \"https://github.com/carloseduardolima\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/profiles",
+              "host": ["{{baseUrl}}"],
+              "path": ["profiles"]
+            }
+          }
+        },
+        {
+          "name": "Atualizar Perfil (Pessoa 1)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"cargo\": \"Analista de Projetos & Desenvolvedor Full Stack\",\n  \"resumo\": \"Estudante de Sistemas para Internet na UNICAP e desenvolvedor com experiência em Java/Spring Boot, React, Next.js e Node.js, atuando com metodologias ágeis na Empresa Júnior UNICAP.\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/profiles/{{profileId1}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["profiles", "{{profileId1}}"]
+            }
+          }
+        },
+        {
+          "name": "Deletar Perfil (por ID)",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/profiles/{{profileId2}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["profiles", "{{profileId2}}"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Academic Experiences",
+      "item": [
+        {
+          "name": "Listar Todas as Experiências Acadêmicas",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const res = pm.response.json();",
+                  "if (res.length >= 1) {",
+                  "  pm.collectionVariables.set('academicExperienceId', res[0].id);",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/academic-experiences",
+              "host": ["{{baseUrl}}"],
+              "path": ["academic-experiences"]
+            }
+          }
+        },
+        {
+          "name": "Buscar Experiência Acadêmica por ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/academic-experiences/{{academicExperienceId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["academic-experiences", "{{academicExperienceId}}"]
+            }
+          }
+        },
+        {
+          "name": "Buscar Experiências Acadêmicas por Perfil",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/academic-experiences/profile/{{profileId1}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["academic-experiences", "profile", "{{profileId1}}"]
+            }
+          }
+        },
+        {
+          "name": "Criar Experiência Acadêmica",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const res = pm.response.json();",
+                  "if (res && res.id) {",
+                  "  pm.collectionVariables.set('academicExperienceId', res.id);",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"instituicao\": \"CESAR School\",\n  \"curso\": \"Especialização em Engenharia de Software e Inteligência Artificial\",\n  \"inicio\": \"2027-02\",\n  \"fim\": \"2028-06\",\n  \"profile_id\": \"{{profileId1}}\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/academic-experiences",
+              "host": ["{{baseUrl}}"],
+              "path": ["academic-experiences"]
+            }
+          }
+        },
+        {
+          "name": "Atualizar Experiência Acadêmica",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"curso\": \"Graduação em Sistemas para Internet - UNICAP (Em curso | 4º Período)\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/academic-experiences/{{academicExperienceId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["academic-experiences", "{{academicExperienceId}}"]
+            }
+          }
+        },
+        {
+          "name": "Deletar Experiência Acadêmica",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/academic-experiences/{{academicExperienceId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["academic-experiences", "{{academicExperienceId}}"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Professional Experiences",
+      "item": [
+        {
+          "name": "Listar Todas as Experiências Profissionais",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const res = pm.response.json();",
+                  "if (res.length >= 1) {",
+                  "  pm.collectionVariables.set('professionalExperienceId', res[0].id);",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/professional-experiences",
+              "host": ["{{baseUrl}}"],
+              "path": ["professional-experiences"]
+            }
+          }
+        },
+        {
+          "name": "Buscar Experiência Profissional por ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/professional-experiences/{{professionalExperienceId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["professional-experiences", "{{professionalExperienceId}}"]
+            }
+          }
+        },
+        {
+          "name": "Buscar Experiências Profissionais por Perfil",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/professional-experiences/profile/{{profileId1}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["professional-experiences", "profile", "{{profileId1}}"]
+            }
+          }
+        },
+        {
+          "name": "Criar Experiência Profissional",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const res = pm.response.json();",
+                  "if (res && res.id) {",
+                  "  pm.collectionVariables.set('professionalExperienceId', res.id);",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"empresa\": \"Porto Digital - Inovações Tecnológicas\",\n  \"cargo\": \"Desenvolvedor Full Stack Júnior\",\n  \"inicio\": \"2026-08\",\n  \"fim\": null,\n  \"descricao\": \"Desenvolvimento de aplicações web com React, Next.js e APIs em Java/Spring Boot e Node.js.\",\n  \"profile_id\": \"{{profileId1}}\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/professional-experiences",
+              "host": ["{{baseUrl}}"],
+              "path": ["professional-experiences"]
+            }
+          }
+        },
+        {
+          "name": "Atualizar Experiência Profissional",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"cargo\": \"Analista de Projetos & Desenvolvedor Front-End Líder\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/professional-experiences/{{professionalExperienceId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["professional-experiences", "{{professionalExperienceId}}"]
+            }
+          }
+        },
+        {
+          "name": "Deletar Experiência Profissional",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/professional-experiences/{{professionalExperienceId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["professional-experiences", "{{professionalExperienceId}}"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Projects",
+      "item": [
+        {
+          "name": "Listar Todos os Projetos",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const res = pm.response.json();",
+                  "if (res.length >= 1) {",
+                  "  pm.collectionVariables.set('projectId', res[0].id);",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/projects",
+              "host": ["{{baseUrl}}"],
+              "path": ["projects"]
+            }
+          }
+        },
+        {
+          "name": "Buscar Projeto por ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/projects/{{projectId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["projects", "{{projectId}}"]
+            }
+          }
+        },
+        {
+          "name": "Buscar Projetos por Perfil",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/projects/profile/{{profileId1}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["projects", "profile", "{{profileId1}}"]
+            }
+          }
+        },
+        {
+          "name": "Criar Projeto",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const res = pm.response.json();",
+                  "if (res && res.id) {",
+                  "  pm.collectionVariables.set('projectId', res.id);",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"titulo\": \"Portfólio Pessoal - Sammuel Victor\",\n  \"descricao\": \"Aplicação web responsiva apresentando projetos, habilidades e trajetória acadêmica e profissional.\",\n  \"tecnologias\": \"React, Next.js, Tailwind CSS, Vercel\",\n  \"link\": \"https://github.com/sammuelvss/Meu_Portifolio\",\n  \"profile_id\": \"{{profileId1}}\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/projects",
+              "host": ["{{baseUrl}}"],
+              "path": ["projects"]
+            }
+          }
+        },
+        {
+          "name": "Atualizar Projeto",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"titulo\": \"Robótica Educacional | Residência Tecnológica Porto Digital\",\n  \"tecnologias\": \"C++, Arduino, Robótica Educacional, Prototipagem\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/projects/{{projectId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["projects", "{{projectId}}"]
+            }
+          }
+        },
+        {
+          "name": "Deletar Projeto",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/projects/{{projectId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["projects", "{{projectId}}"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
