@@ -8,6 +8,7 @@ API REST desenvolvida com **Node.js**, **Express**, **Sequelize** e **PostgreSQL
 - **Curso:** Sistemas para Internet — Universidade Católica de Pernambuco (UNICAP)
 - **GitHub:** [https://github.com/sammuelvss](https://github.com/sammuelvss)
 - **LinkedIn:** [https://www.linkedin.com/in/sammuel-victor](https://www.linkedin.com/in/sammuel-victor)
+- **Servidor em Produção (Vercel):** [https://curriculo-api-sammuel.vercel.app](https://curriculo-api-sammuel.vercel.app)
 
 ---
 
